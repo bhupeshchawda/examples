@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<configuration>
+  <property>
+    <name>dt.application.DedupExample.operator.RandomGenerator.prop.tuplesPerWindow</name>
+    <value>100</value>
+  </property>
+  <property>
+    <name>dt.application.DedupExample.operator.Deduper.prop.keyExpression</name>
+    <value>id</value>
+  </property>
+  <property>
+    <name>dt.application.DedupExample.operator.Deduper.prop.timeExpression</name>
+    <value>eventTime.getTime()</value>
+  </property>
+  <property>
+    <name>dt.application.DedupExample.operator.Deduper.prop.bucketSpan</name>
+    <value>10</value>
+  </property>
+  <property>
+    <name>dt.application.DedupExample.operator.Deduper.prop.expireBefore</name>
+    <value>60</value>
+  </property>
+</configuration>
+
