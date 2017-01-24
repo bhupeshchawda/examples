@@ -7,8 +7,9 @@ import com.datatorrent.api.Context;
 import com.datatorrent.api.DAG;
 import com.datatorrent.api.StreamingApplication;
 import com.datatorrent.api.annotation.ApplicationAnnotation;
-import com.datatorrent.common.partitioner.StatelessPartitioner;
 import com.datatorrent.lib.io.ConsoleOutputOperator;
+
+import static com.datatorrent.api.Context.OperatorContext.TIMEOUT_WINDOW_COUNT;
 
 @ApplicationAnnotation(name="InnerJoinExample")
 public class InnerJoinApplication implements StreamingApplication
@@ -24,12 +25,17 @@ public class InnerJoinApplication implements StreamingApplication
 
     // Inner join Operator
     POJOInnerJoinOperator join = dag.addOperator("Join", new POJOInnerJoinOperator());
+    join.setLeftKeyPrimary(true);
+    join.setRightKeyPrimary(true);
+
     ConsoleOutputOperator output = dag.addOperator("Output", new ConsoleOutputOperator());
 
+    dag.setAttribute(join, TIMEOUT_WINDOW_COUNT, 6000);
     // Streams
     dag.addStream("SalesToJoin", salesGenerator.output, join.input1);
     dag.addStream("ProductToJoin", productGenerator.output, join.input2);
     dag.addStream("JoinToConsole", join.outputPort, output.input);
+
 
     // Setting tuple class properties to the ports of join operator
     dag.setInputPortAttribute(join.input1, Context.PortContext.TUPLE_CLASS, POJOGenerator.SalesEvent.class);

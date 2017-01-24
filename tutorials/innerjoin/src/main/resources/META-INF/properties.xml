@@ -2,7 +2,7 @@
 <configuration>
   <property>
     <name>dt.application.InnerJoinExample.operator.Join.attr.MEMORY_MB</name>
-    <value>1024</value>
+    <value>2048</value>
   </property>
   <property>
     <name>dt.application.InnerJoinExample.operator.Join.prop.leftKeyExpression</name>
@@ -18,7 +18,7 @@
   </property>
   <property>
     <name>dt.application.InnerJoinExample.operator.Join.prop.expiryTime</name>
-    <value>3600000</value>
+    <value>60000</value>
   </property>
   <property>
     <name>dt.application.InnerJoinExample.operator.Join.prop.includeFieldStr</name>
@@ -30,7 +30,11 @@
   </property>
   <property>
     <name>dt.application.InnerJoinExample.operator.Join.attr.PARTITIONER</name>
-    <value>com.datatorrent.common.partitioner.StatelessPartitioner:3</value>
+    <value>com.datatorrent.common.partitioner.StatelessPartitioner:1</value>
+  </property>
+  <property>
+    <name>dt.loggers.level</name>
+    <value>com.datatorrent.contrib.*:DEBUG,org.apache.apex.*:DEBUG</value>
   </property>
 </configuration>
 

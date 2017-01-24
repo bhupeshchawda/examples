@@ -26,7 +26,7 @@ public class POJOGenerator implements InputOperator
   private boolean isSalesEvent = true;
   // Limit number of emitted tuples per window
   @Min(0)
-  private long maxTuplesPerWindow = 100;
+  private long maxTuplesPerWindow = 10;
   private final Random random = new Random();
   public final transient DefaultOutputPort<Object> output = new DefaultOutputPort<>();
 
